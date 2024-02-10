@@ -9,7 +9,7 @@ import os
 from pyspark.sql.functions import udf
 from pyspark.sql.types import StringType
 from urllib.parse import urlparse
-
+from pyspark.ml.feature import StringIndexer
 
 spark = SparkSession.builder.appName("MyApp").getOrCreate()
 
@@ -74,7 +74,7 @@ for row in top_10_components.collect():
 	current_vertices = current_component.join(vertices, "id", "inner").select(vertices.columns)
     # Filter the edges of the original graph for the current connected component
 	current_edges = graph.edges.join(current_vertices, graph.edges["src"] == current_vertices["id"], "inner").select(graph.edges.columns)
-    	# Create a new GraphFrame using the resulting vertices and edges of the current connected component
+    # Create a new GraphFrame using the resulting vertices and edges of the current connected component
 	current_graph = GraphFrame(current_vertices, current_edges)
 	# Run PageRank on the current GraphFrame
 	pagerank_results = current_graph.pageRank(resetProbability=0.15, tol=0.01)
@@ -88,7 +88,6 @@ for row in top_10_components.collect():
 	top_10_keywords = exploded_keywords.groupBy("keyword").count().sort(desc("count")).limit(10)
 	
 	keywords_vs_domains = exploded_keywords.groupBy("domain", "keyword").agg(count("*").alias("num_occurrences")).filter(col("domain").isin([row["domain"] for row in top_10_domains.collect()])).filter(col("keyword").isin(([row["keyword"] for row in top_10_keywords.collect()])))
-	from pyspark.ml.feature import StringIndexer
 	string_indexer = StringIndexer(inputCol="domain", outputCol="domain_index")
 	model = string_indexer.fit(keywords_vs_domains)
 	keywords_vs_domains = model.transform(keywords_vs_domains)
