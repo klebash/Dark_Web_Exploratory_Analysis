@@ -12,4 +12,8 @@ a JSON object with the following structure:
 4. ”category”: the category of the document based on the keywords found in the HTML text.
 5. ”keywords”: the predefined keywords that were found in the HTML text.
 
-   
+## Repository Structure
+- Component_count : 
+- Components :
+- Code :
+- heatmap :
