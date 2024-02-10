@@ -1,4 +1,4 @@
-# Dark Web Exploritary Analysis
+# Dark Web Exploratory Analysis
 
 ## Overview
 This repository presents an exploratory data analysis of a dataset sourced from the dark web. It includes not only the code used for the analysis but also the results of it,The aim is to uncover patters,trends and insights within this dataset.
