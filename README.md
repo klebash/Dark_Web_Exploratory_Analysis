@@ -13,7 +13,9 @@ a JSON object with the following structure:
 5. ”keywords”: the predefined keywords that were found in the HTML text.
 
 ## Repository Structure
-- Component_count : 
-- Components :
-- Code :
-- heatmap :
+- Component_count/ : Directory containing heatmap and csv file with the number of 
+- Components/ : 1.Directory containing a folder for each component with a  table with the results of the pagerank on the specific component
+  2. HeatMap representation (top keywords vs top domains )
+  3. Folder with the results of Indegree on that component
+- Code/ : Conains the code of the project
+- Heatmap :   comprehensive visual overview of  dataset. 
