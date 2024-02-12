@@ -46,7 +46,7 @@ vertices = df.selectExpr("url as id").distinct()
 
 edges = df.selectExpr("url as src", "parent as dst")
 graph = GraphFrame(vertices, edges)
-#result = graph.pageRank(resetProbability=0.15, tol=0.01)
+result = graph.pageRank(resetProbability=0.15, tol=0.01)
 InnerDegree = graph.inDegrees
 InnerDegree = InnerDegree.sort(desc("inDegree")).limit(10)
 InnerDegree.show()
